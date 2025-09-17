@@ -8,8 +8,9 @@ import projeto.lazzy.teste.libraryapi.repository.AutorRepository;
 
 @Service
 public class autorServide {
+
     @Autowired
-    AutorRepository repository;
+    private AutorRepository repository;
 
     public void salvarAutor(Autor autor){
         repository.save(autor);
