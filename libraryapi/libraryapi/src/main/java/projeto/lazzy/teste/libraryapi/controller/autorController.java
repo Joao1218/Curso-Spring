@@ -1,8 +1,6 @@
 package projeto.lazzy.teste.libraryapi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,8 +16,8 @@ import java.net.URI;
 @RestController
 @RequestMapping("/autores")
 // http://localhost:8080/autores
-
 public class autorController {
+
     @Autowired
     private autorServide autor;
 

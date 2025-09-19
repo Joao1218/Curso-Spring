@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: ToDoList
+  datasource:
+    url:
+    username: toDoList
+    password: toDolist
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+

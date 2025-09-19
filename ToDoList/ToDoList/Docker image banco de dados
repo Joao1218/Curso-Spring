@@ -1,0 +1,33 @@
+#Rodar o PgAdmin4
+docker run --name pgadmin4 -p 15432:80 -e PGADMIN_DEFAULT_EMAIL=admin@admin.com -e PGADMIN_DEFAULT_PASSWORD=admin dpage/pgadmin4
+
+#Rodar e subir banco Posgres
+docker run --name listdb -e POSTGRES_PASSWORD=toDoList -e POSTGRES_USER=admin -e POSTGRES_DB=ToDoList -p 5432:5432 postgres:17.6
+
+#Criando uma netWork para que os containers consigam se enxergar
+docker network create library-network
+
+#SQL do banco de dados do projeto
+CREATE TABLE tarefas (
+	id UUID NOT NULL PRIMARY KEY,
+	nome VARCHAR(100) NOT NULL,
+	data_criacao DATE NOT NULL,
+	prazo DATE NOT NULL,
+	prioridade VARCHAR(30) NOT NULL,
+	descricao TEXT NOT NULL,
+	status VARCHAR(20) NOT NULL DEFAULT 'PENDENTE',
+    CONSTRAINT chk_status CHECK (status IN ('PENDENTE','CONCLUIDA'))
+	CONSTRAINT chk_prioridade CHECK (prioridade IN ('ALTA', 'MEDIA', 'BAIXO')),
+	id_usuario UUID NOT NULL REFERENCES usuarios(id)
+);
+
+CREATE TABLE usuarios (
+    id UUID NOT NULL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    data_nascimento DATE NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password TEXT NOT NULL
+);
+
+
+select * from livro
